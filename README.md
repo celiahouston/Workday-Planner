@@ -20,4 +20,11 @@ The app should:
 
 * Save the event in local storage when the save button is clicked in that timeblock.
 
-* Persist events between refreshes of a pag
+* Persist events between refreshes of a page
+
+## Deployed Page
+
+## Screenshot
+
+## License
+
