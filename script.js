@@ -13,7 +13,7 @@ $(document).ready(function () {
             var eventInput = $('<input>')
                 .addClass('form-control description')
                 .attr('data-hour', hour)
-                .atttr('id', 'event_' + hour); 
+                .attr('id', 'event_' + hour)
                 .attr('placeholder', 'Enter event');
 
             var saveBtn = $('<button>')
@@ -21,14 +21,17 @@ $(document).ready(function () {
                 .text('Save')
                 .attr('data-hour', hour);
 
-            row.append($('<td>').text(time));
-            row.append($('<td>').append(eventInput));
-            row.append($('<td>').append(row));
+                row.append($('<td>').text(time));
+                row.append($('<td>').append(eventInput));
+                row.append($('<td>').append(saveBtn));
+                
+            scheduleTableBody.append(row); 
         }
 
     }
 
     function saveEvent(hour, eventText) {
+        localStorage.setItem('event_' + hour, eventText); 
 
     }
 
@@ -39,7 +42,7 @@ $(document).ready(function () {
 
             if (storedEvent) {
                 $(this).val(storedEvent);
-                console.log('Event loaded for ' hour);
+                console.log('Event loaded for ' + hour);
             }
         });
     }
