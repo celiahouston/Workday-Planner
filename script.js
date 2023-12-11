@@ -11,7 +11,7 @@ $(document).ready(function () {
             var time = dayjs().hour(hour).format('h A') + ' - ' + dayjs().hour(hour + 1).format('h A');
 
             var eventInput = $('<input>')
-                .addClass('form-control description eventInput')
+                .addClass('form-control eventInput')
                 .attr('data-hour', hour)
                 .attr('class', 'eventInput')
                 .attr('id', 'event_' + hour)
