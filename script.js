@@ -11,32 +11,33 @@ $(document).ready(function () {
             var time = dayjs().hour(hour).format('h A') + ' - ' + dayjs().hour(hour + 1).format('h A');
 
             var eventInput = $('<input>')
-                .addClass('form-control description')
+                .addClass('form-control description eventInput')
                 .attr('data-hour', hour)
+                .attr('class', 'eventInput')
                 .attr('id', 'event_' + hour)
                 .attr('placeholder', 'Enter event');
 
             var saveBtn = $('<button>')
                 .addClass('btn btn-primary saveBtn')
                 .text('Save')
-                .attr('data-hour', hour);
+                .attr('data-hour', hour)
+                .attr('id', 'event_', + hour + '_btn');
 
                 row.append($('<td>').text(time));
                 row.append($('<td>').append(eventInput));
                 row.append($('<td>').append(saveBtn));
-                
+
             scheduleTableBody.append(row); 
         }
-
     }
 
     function saveEvent(hour, eventText) {
         localStorage.setItem('event_' + hour, eventText); 
-
+        console.log('Event saved for ' + hour);
     }
 
     function loadEvents() {
-        $('.description').each(function () {
+        $('.eventInput').each(function () {
             var hour = $(this).attr('data-hour');
             var storedEvent = localStorage.getItem('event_' + hour);
 
@@ -49,15 +50,15 @@ $(document).ready(function () {
 
     $('table').on("click", ".saveBtn", function () {
         var hour = $(this).attr('data-hour');
-        var eventText = $(this).siblings('.description').val();
+        var eventText = $(this).closest('tr').find('input.eventInput').val();
         saveEvent(hour, eventText);
-    }); 
-
-    $('.description').on('input', function () {
+    });
+     
+    $('.eventInput').on('input', function() {
         var hour = $(this).attr('data-hour');
         var eventText = $(this).val();
         saveEvent(hour, eventText);
-    });
+    }); 
 
     displayCurrentDate();
     createSchedule();
