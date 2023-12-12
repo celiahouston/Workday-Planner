@@ -31,6 +31,17 @@ $(document).ready(function () {
         }
     }
 
+    function applyTimeStatus(row, hour) {
+        var currentHour = dayjs().hour(); 
+
+        if (hour < currentHour) {
+            row.addClass('past');
+        } else if (hour === currentHour) {
+            row.addClass('present');
+        } else {
+            row.addClass('future');
+        } 
+    
     function saveEvent(hour, eventText) {
         localStorage.setItem('event_' + hour, eventText); 
         console.log('Event saved for ' + hour);
